@@ -30,6 +30,8 @@ COPY stream.sh /app/stream.sh
 # Copy cookies.txt into the container (make sure to provide the correct path to the cookies file)
 COPY cookies.txt /app/cookies.txt
 
+COPY app.py /app.py
+
 # Give execute permissions to the script
 RUN chmod +x /app/stream.sh
 
@@ -38,3 +40,4 @@ HEALTHCHECK CMD curl --fail http://localhost:8000/health || exit 1
 
 # Set the default command to use Gunicorn for serving the Flask app
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
+
