@@ -16,13 +16,14 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # Install yt-dlp (youtube-dl replacement)
-RUN pip3 install -U yt-dlp
+RUN pip3 install -U yt-dlp flask
 
 # Create a directory for the video
 WORKDIR /app
 
-# Copy the stream.sh script into the container
+# Copy the stream script and health check script
 COPY stream.sh /app/stream.sh
+COPY health_check.py /app/health_check.py
 
 # Copy cookies.txt into the container (optional)
 COPY cookies.txt /app/cookies.txt
@@ -30,5 +31,8 @@ COPY cookies.txt /app/cookies.txt
 # Give execute permissions to the script
 RUN chmod +x /app/stream.sh
 
-# Set the default command to run the script
-CMD ["/bin/bash", "/app/stream.sh"]
+# Expose port 8000 for health checks
+EXPOSE 8000
+
+# Start both the streaming script and health check server
+CMD bash -c "/app/stream.sh & python3 /app/health_check.py"
