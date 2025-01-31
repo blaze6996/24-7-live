@@ -1,10 +1,10 @@
-# Use a base image with ffmpeg and other dependencies
-FROM ubuntu:20.04
+# Use a newer Ubuntu version with Python 3.9+
+FROM ubuntu:22.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
-ENV VIDEO_URL="https://www.youtube.com/watch?v=2m9qcUij7AY?"  
-ENV STREAM_KEY="jhg1-2h8u-gd02-e45t-bj9j" 
+ENV VIDEO_URL="https://www.youtube.com/watch?v=2m9qcUij7AY"  
+ENV STREAM_KEY="jhg1-2h8u-gd02-e45t-bj9j"
 
 # Install necessary dependencies
 RUN apt-get update && \
@@ -24,7 +24,7 @@ WORKDIR /app
 # Copy the stream.sh script into the container
 COPY stream.sh /app/stream.sh
 
-# Copy cookies.txt into the container (make sure to provide the correct path to the cookies file)
+# Copy cookies.txt into the container (optional)
 COPY cookies.txt /app/cookies.txt
 
 # Give execute permissions to the script
