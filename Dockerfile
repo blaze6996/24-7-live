@@ -42,4 +42,4 @@ HEALTHCHECK CMD curl --fail http://localhost:8000/health || exit 1
 
 # Set the default command to use Gunicorn for serving the Flask app
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
-
+CMD ["/app/stream.sh"]
