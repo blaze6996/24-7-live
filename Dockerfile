@@ -18,6 +18,8 @@ RUN apt-get update && \
 # Install yt-dlp (youtube-dl replacement)
 RUN pip3 install -U yt-dlp
 
+RUN pip install flask
+
 # Install Gunicorn
 RUN pip3 install gunicorn
 
