@@ -30,7 +30,7 @@ COPY stream.sh /app/stream.sh
 # Copy cookies.txt into the container (make sure to provide the correct path to the cookies file)
 COPY cookies.txt /app/cookies.txt
 
-COPY app.py /app.py
+COPY . /app
 
 # Give execute permissions to the script
 RUN chmod +x /app/stream.sh
