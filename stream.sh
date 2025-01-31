@@ -13,8 +13,8 @@ fi
 
 # Download the best video and audio streams separately using cookies.txt
 echo "Downloading video and audio from YouTube..."
-yt-dlp --cookies /app/cookies.txt -f bestvideo -o "/app/video.%(ext)s" "$VIDEO_URL"
-yt-dlp --cookies /app/cookies.txt -f bestaudio -o "/app/audio.%(ext)s" "$VIDEO_URL"
+yt-dlp --no-check-certificate --geo-bypass --user-agent "Mozilla/5.0" --cookies /app/cookies.txt -f bestvideo -o "/app/video.%(ext)s" "$VIDEO_URL"
+yt-dlp --no-check-certificate --geo-bypass --user-agent "Mozilla/5.0" --cookies /app/cookies.txt -f bestaudio -o "/app/audio.%(ext)s" "$VIDEO_URL"
 
 # Wait until video and audio files are downloaded
 sleep 5
@@ -30,7 +30,7 @@ fi
 
 # Merge the video and audio using ffmpeg
 echo "Merging video and audio into a single file..."
-ffmpeg -i "$VIDEO_FILE" -i "$AUDIO_FILE" -c:v copy -c:a aac -strict experimental /app/video.mp4
+ffmpeg -i "$VIDEO_FILE" -i "$AUDIO_FILE" -c:v copy -c:a aac -strict experimental -y /app/video.mp4
 
 # Check if the merged file exists
 if [ ! -f /app/video.mp4 ]; then
