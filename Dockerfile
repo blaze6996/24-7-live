@@ -4,7 +4,7 @@ FROM ubuntu:22.04
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV VIDEO_URL="https://www.youtube.com/watch?v=Eba6OYQgRvA"  
-ENV STREAM_KEY="jhg1-2h8u-gd02-e45t-bj9j"
+ENV STREAM_KEY="m2x0-dkjr-5e1p-vhdf-bahg"
 
 # Install necessary dependencies
 RUN apt-get update && \
